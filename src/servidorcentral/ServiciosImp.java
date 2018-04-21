@@ -31,7 +31,7 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
     private HashMap<String, String> cacheHoroscope;
 
     public ServiciosImp(String ipClima, String portClima, String ipHorosc, String portHorosc,
-            HashMap cacheHorosc, HashMap cacheClima) throws RemoteException {
+            HashMap<String, String> cacheHorosc, HashMap<String, String> cacheClima) throws RemoteException {
         this.ipClima = ipClima;
         this.portClima = portClima;
         this.ipHorosc = ipHorosc;
@@ -78,7 +78,7 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
                         cacheHoroscope.put(sign, answerH);
                     }
                 } catch (NotBoundException | MalformedURLException ex) {
-                    Logger.getLogger(ServiciosImp.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ServicioHoroscopo.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 System.out.println("Servidor> Cache hit.");
@@ -112,7 +112,7 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
                         cacheWeather.put(date, answerW);
                     }
                 } catch (NotBoundException | MalformedURLException ex) {
-                    Logger.getLogger(ServiciosImp.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ServicioClima.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 System.out.println("Servidor> Cache hit.");
@@ -124,7 +124,7 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
         return answerW;
     }
 
-    public boolean isValidDate(String text) {
+    private boolean isValidDate(String text) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
         try {
@@ -135,7 +135,7 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
         return true;
     }
 
-    public boolean isValidSign(String text) {
+    private boolean isValidSign(String text) {
         String[] signs = {"aries", "tauro", "geminis", "cancer", "leo", "virgo",
             "libra", "escorpio", "sagitario", "capricornio", "acuario", "piscis"};
         for (int i = 0; i < signs.length; i++) {

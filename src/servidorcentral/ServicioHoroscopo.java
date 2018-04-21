@@ -5,6 +5,7 @@
  */
 package servidorcentral;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -12,5 +13,5 @@ import java.rmi.Remote;
  */
 public interface ServicioHoroscopo extends Remote {
 
-    public String consultarHoroscopo(String sign);
+    public String consultarHoroscopo(String sign) throws RemoteException;
 }

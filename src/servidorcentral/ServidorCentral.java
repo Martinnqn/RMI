@@ -36,7 +36,7 @@ public class ServidorCentral {
             System.err.println("Error de comunicacion: " + e.toString());
             System.exit(1);
         } catch (MalformedURLException e) {
-            System.err.println("Excepcion en ServidorEco:");
+            System.err.println("Excepcion en ServidorCentral:");
             e.printStackTrace();
             System.exit(1);
         }

@@ -27,7 +27,7 @@ public class ServidorHoroscopo {
             System.err.println("Error de comunicacion: " + e.toString());
             System.exit(1);
         } catch (MalformedURLException e) {
-            System.err.println("Excepcion en ServidorEco:");
+            System.err.println("Excepcion en ServidorHoroscopo:");
             e.printStackTrace();
             System.exit(1);
         }

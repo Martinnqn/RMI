@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package servidorcentral;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -13,6 +14,6 @@ import java.rmi.RemoteException;
  */
 public interface ServicioClima extends Remote {
 
-    public String consultarCLima(String date) throws RemoteException;
+    public String consultarClima(String date) throws RemoteException;
 
 }

@@ -72,7 +72,7 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
                 try {
                     srv = (ServicioHoroscopo) Naming.lookup("//" + ipHorosc + ":" + portHorosc + "/ServicioHoroscopo");
                     answerH = srv.consultarHoroscopo(sign);
-                    if (answerH.equals("ERROR")) {
+                    if (answerH == null) {
                         answerH = "El servidor de horoscopo no esta disponible, consulte mas tarde.";
                     } else {
                         cacheHoroscope.put(sign, answerH);
@@ -105,8 +105,8 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
                 ServicioClima srv;
                 try {
                     srv = (ServicioClima) Naming.lookup("//" + ipClima + ":" + portClima + "/ServicioClima");
-                    answerW = srv.consultarCLima(date);
-                    if (answerW.equals("ERROR")) {
+                    answerW = srv.consultarClima(date);
+                    if (answerW == null) {
                         answerW = "El servidor de clima no esta disponible, consulte mas tarde.";
                     } else {
                         cacheWeather.put(date, answerW);

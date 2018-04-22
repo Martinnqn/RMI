@@ -13,5 +13,6 @@ import java.rmi.RemoteException;
  * @author Martin
  */
 public interface Servicios extends Remote {
+
     public String consultarClimayHorosc(String s) throws RemoteException;
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package servidorcentral;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

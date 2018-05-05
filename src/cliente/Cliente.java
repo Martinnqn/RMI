@@ -14,7 +14,6 @@ public class Cliente {
         try {
             ServiciosCentralAbstract srv = (ServiciosCentralAbstract) Naming.lookup("//" + args[0] + ":" + args[1] + "/ServiciosCentral");
             System.out.println(srv.consultarClimayHorosc(args[2]));
-
         } catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
         } catch (Exception e) {

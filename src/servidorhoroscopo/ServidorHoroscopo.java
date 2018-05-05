@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servidorhoroscopo;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
-/**
- *
- * @author Martin
- */
 public class ServidorHoroscopo {
 
     public static void main(String[] args) {
@@ -23,6 +14,8 @@ public class ServidorHoroscopo {
         try {
             ServiciosHoroscopoAbstract srvHorosc = new ServiciosHoroscopo();
             Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServiciosHoroscopo", srvHorosc);
+            System.out.println("Servidor Horoscopo> Online.");
+            System.out.println("Servidor Horoscopo> Esperando consultas...");
         } catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
             System.exit(1);
@@ -32,4 +25,5 @@ public class ServidorHoroscopo {
             System.exit(1);
         }
     }
+
 }

@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servidorclima;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
-/**
- *
- * @author Martin
- */
 public class ServidorClima {
 
     public static void main(String[] args) {
@@ -23,6 +14,8 @@ public class ServidorClima {
         try {
             ServiciosClimaAbstract srvClima = new ServiciosClima();
             Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServiciosClima", srvClima);
+            System.out.println("Servidor Clima> Online.");
+            System.out.println("Servidor Clima> Esperando consultas...");
         } catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
             System.exit(1);
@@ -32,4 +25,5 @@ public class ServidorClima {
             System.exit(1);
         }
     }
+
 }

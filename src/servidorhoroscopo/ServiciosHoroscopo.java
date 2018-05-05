@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servidorhoroscopo;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Random;
 
-/**
- *
- * @author Martin
- */
 public class ServiciosHoroscopo extends UnicastRemoteObject implements ServiciosHoroscopoAbstract {
 
     public ServiciosHoroscopo() throws RemoteException {
@@ -20,6 +11,8 @@ public class ServiciosHoroscopo extends UnicastRemoteObject implements Servicios
 
     @Override
     public String consultarHoroscopo(String sign) throws RemoteException {
+        System.out.println("Cliente> Consulta: " + sign);
+
         String[] horoscopes = {
             "En este dia, le ganara la desconfianza. Tendra algunas dificultades para manifestar lo que siente y expresar sus pensamientos.",
             "No es un momento para buscar grandes emociones y aventuras. Mejor dediquese a disfrutar al maximo de los pequeños placeres diarios.",
@@ -39,4 +32,5 @@ public class ServiciosHoroscopo extends UnicastRemoteObject implements Servicios
         Random random = new Random(seed);
         return horoscopes[random.nextInt(11)];
     }
+
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servidorcentral;
 
 import java.net.MalformedURLException;
@@ -19,10 +14,6 @@ import java.util.logging.Logger;
 import servidorclima.ServiciosClimaAbstract;
 import servidorhoroscopo.ServiciosHoroscopoAbstract;
 
-/**
- *
- * @author Martin
- */
 public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCentralAbstract {
 
     private String ipClima;
@@ -46,17 +37,21 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
     @Override
     public String consultarClimayHorosc(String query) throws RemoteException {
         String answer;
+
+        System.out.println("Cliente> Consulta: " + query);
+
         /*extraer fecha y horoscopo de query*/
-        String date = query.split(",")[0].substring(1);
-        String hAux = query.split(",")[1];
-        String sign = hAux.substring(0, hAux.length() - 1);
-        if (query.equals("salir")) {
-            answer = "Hasta luego.";
-        } else {
+        try {
+            String date = query.split(",")[0].substring(1);
+            String hAux = query.split(",")[1];
+            String sign = hAux.substring(0, hAux.length() - 1);
             String answerW = consultarClima(date);
             String answerH = consultarHoroscopo(sign);
-            answer = "Horóscopo: " + answerH + " \n Clima: " + answerW;
+            answer = "Horóscopo: " + answerH + "\nClima: " + answerW;
+        } catch (Exception e) {
+            answer = "Formato de consulta invalido, pruebe: (fecha,signo).";
         }
+
         return answer;
     }
 
@@ -148,4 +143,5 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
         }
         return false;
     }
+
 }

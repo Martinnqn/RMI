@@ -70,13 +70,10 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
                 try {
                     srv = (ServiciosHoroscopoAbstract) Naming.lookup("//" + ipHorosc + ":" + portHorosc + "/ServiciosHoroscopo");
                     answerH = srv.consultarHoroscopo(sign);
-                    if (answerH == null) {
-                        answerH = "El servidor de horoscopo no esta disponible, consulte mas tarde.";
-                    } else {
-                        cacheHoroscope.put(sign, answerH);
-                    }
-                } catch (NotBoundException | MalformedURLException ex) {
-                    Logger.getLogger(ServiciosHoroscopoAbstract.class.getName()).log(Level.SEVERE, null, ex);
+                    cacheHoroscope.put(sign, answerH);
+                } catch (Exception ex) {
+                    answerH = "El servidor de horoscopo no esta disponible, consulte mas tarde.";
+                    System.out.println("Servidor> Servidor de horoscopo no responde.");
                 }
             } else {
                 System.out.println("Servidor> Cache hit.");
@@ -104,13 +101,10 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
                 try {
                     srv = (ServiciosClimaAbstract) Naming.lookup("//" + ipClima + ":" + portClima + "/ServiciosClima");
                     answerW = srv.consultarClima(date);
-                    if (answerW == null) {
-                        answerW = "El servidor de clima no esta disponible, consulte mas tarde.";
-                    } else {
-                        cacheWeather.put(date, answerW);
-                    }
-                } catch (NotBoundException | MalformedURLException ex) {
-                    Logger.getLogger(ServiciosClimaAbstract.class.getName()).log(Level.SEVERE, null, ex);
+                    cacheWeather.put(date, answerW);
+                } catch (Exception ex) {
+                    answerW = "El servidor de clima no esta disponible, consulte mas tarde.";
+                    System.out.println("Servidor> Servidor de clima no responde.");
                 }
             } else {
                 System.out.println("Servidor> Cache hit.");

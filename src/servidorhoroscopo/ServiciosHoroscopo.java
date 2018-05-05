@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidores;
+package servidorhoroscopo;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -13,9 +13,9 @@ import java.util.Random;
  *
  * @author Martin
  */
-public class ServicioHoroscopoImp extends UnicastRemoteObject implements ServicioHoroscopo {
+public class ServiciosHoroscopo extends UnicastRemoteObject implements ServiciosHoroscopoAbstract {
 
-    public ServicioHoroscopoImp() throws RemoteException {
+    public ServiciosHoroscopo() throws RemoteException {
     }
 
     @Override

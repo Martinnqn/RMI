@@ -2,6 +2,8 @@ package cliente;
 
 import java.rmi.*;
 
+import servidorcentral.ServiciosCentralAbstract;
+
 public class Cliente {
 
     public static void main(String args[]) {
@@ -10,7 +12,7 @@ public class Cliente {
             return;
         }
         try {
-            Servicios srv = (Servicios) Naming.lookup("//" + args[0] + ":" + args[1] + "/ServiciosImp");
+            ServiciosCentralAbstract srv = (ServiciosCentralAbstract) Naming.lookup("//" + args[0] + ":" + args[1] + "/ServiciosImp");
             System.out.println(srv.consultarClimayHorosc(args[2]));
 
         } catch (RemoteException e) {

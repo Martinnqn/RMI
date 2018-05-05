@@ -29,7 +29,7 @@ public class ServidorCentral {
         cacheWeather = new HashMap<>();
         cacheHoroscope = new HashMap<>();
         try {
-            ServiciosImp servicios = new ServiciosImp(args[2], args[3], args[4], args[5],
+            ServiciosCentral servicios = new ServiciosCentral(args[2], args[3], args[4], args[5],
                     cacheHoroscope, cacheWeather);
             Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServiciosImp", servicios);
         } catch (RemoteException e) {

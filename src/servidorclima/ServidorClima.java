@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidores;
+package servidorclima;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -21,7 +21,7 @@ public class ServidorClima {
             return;
         }
         try {
-            ServicioClima srvClima = new ServicioClimaImp();
+            ServiciosClimaAbstract srvClima = new ServiciosClima();
             Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServicioClima", srvClima);
         } catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());

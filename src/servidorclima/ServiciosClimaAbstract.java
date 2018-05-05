@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidores;
+package servidorclima;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
  *
  * @author Martin
  */
-public interface ServicioClima extends Remote {
+public interface ServiciosClimaAbstract extends Remote {
 
     public String consultarClima(String date) throws RemoteException;
 

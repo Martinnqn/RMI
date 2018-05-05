@@ -16,11 +16,14 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import servidorclima.ServiciosClimaAbstract;
+import servidorhoroscopo.ServiciosHoroscopoAbstract;
+
 /**
  *
  * @author Martin
  */
-public class ServiciosImp extends UnicastRemoteObject implements Servicios {
+public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCentralAbstract {
 
     private String ipClima;
     private String portClima;
@@ -30,7 +33,7 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
     private HashMap<String, String> cacheWeather;
     private HashMap<String, String> cacheHoroscope;
 
-    public ServiciosImp(String ipClima, String portClima, String ipHorosc, String portHorosc,
+    public ServiciosCentral(String ipClima, String portClima, String ipHorosc, String portHorosc,
             HashMap<String, String> cacheHorosc, HashMap<String, String> cacheClima) throws RemoteException {
         this.ipClima = ipClima;
         this.portClima = portClima;
@@ -68,9 +71,9 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
             if (answerH == null) {
                 System.out.println("Servidor> Consultando a servidor de horoscopo...");
                 //consultar el horoscopo
-                ServicioHoroscopo srv;
+                ServiciosHoroscopoAbstract srv;
                 try {
-                    srv = (ServicioHoroscopo) Naming.lookup("//" + ipHorosc + ":" + portHorosc + "/ServicioHoroscopo");
+                    srv = (ServiciosHoroscopoAbstract) Naming.lookup("//" + ipHorosc + ":" + portHorosc + "/ServicioHoroscopo");
                     answerH = srv.consultarHoroscopo(sign);
                     if (answerH == null) {
                         answerH = "El servidor de horoscopo no esta disponible, consulte mas tarde.";
@@ -78,7 +81,7 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
                         cacheHoroscope.put(sign, answerH);
                     }
                 } catch (NotBoundException | MalformedURLException ex) {
-                    Logger.getLogger(ServicioHoroscopo.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ServiciosHoroscopoAbstract.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 System.out.println("Servidor> Cache hit.");
@@ -102,9 +105,9 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
             //si no tiene dato entonces se lo pregunta al servidor
             if (answerW == null) {
                 System.out.println("Servidor> Consultando a servidor de clima...");
-                ServicioClima srv;
+                ServiciosClimaAbstract srv;
                 try {
-                    srv = (ServicioClima) Naming.lookup("//" + ipClima + ":" + portClima + "/ServicioClima");
+                    srv = (ServiciosClimaAbstract) Naming.lookup("//" + ipClima + ":" + portClima + "/ServicioClima");
                     answerW = srv.consultarClima(date);
                     if (answerW == null) {
                         answerW = "El servidor de clima no esta disponible, consulte mas tarde.";
@@ -112,7 +115,7 @@ public class ServiciosImp extends UnicastRemoteObject implements Servicios {
                         cacheWeather.put(date, answerW);
                     }
                 } catch (NotBoundException | MalformedURLException ex) {
-                    Logger.getLogger(ServicioClima.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ServiciosClimaAbstract.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 System.out.println("Servidor> Cache hit.");

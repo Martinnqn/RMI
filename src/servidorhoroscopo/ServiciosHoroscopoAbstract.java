@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidores;
+package servidorhoroscopo;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
  *
  * @author Martin
  */
-public interface ServicioHoroscopo extends Remote {
+public interface ServiciosHoroscopoAbstract extends Remote {
 
     public String consultarHoroscopo(String sign) throws RemoteException;
 }

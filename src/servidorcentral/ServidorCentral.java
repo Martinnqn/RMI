@@ -31,7 +31,7 @@ public class ServidorCentral {
         try {
             ServiciosCentral servicios = new ServiciosCentral(args[2], args[3], args[4], args[5],
                     cacheHoroscope, cacheWeather);
-            Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServiciosImp", servicios);
+            Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServiciosCentral", servicios);
         } catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
             System.exit(1);

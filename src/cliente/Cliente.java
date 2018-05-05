@@ -12,7 +12,7 @@ public class Cliente {
             return;
         }
         try {
-            ServiciosCentralAbstract srv = (ServiciosCentralAbstract) Naming.lookup("//" + args[0] + ":" + args[1] + "/ServiciosImp");
+            ServiciosCentralAbstract srv = (ServiciosCentralAbstract) Naming.lookup("//" + args[0] + ":" + args[1] + "/ServiciosCentral");
             System.out.println(srv.consultarClimayHorosc(args[2]));
 
         } catch (RemoteException e) {

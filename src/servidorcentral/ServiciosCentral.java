@@ -73,7 +73,7 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
                 //consultar el horoscopo
                 ServiciosHoroscopoAbstract srv;
                 try {
-                    srv = (ServiciosHoroscopoAbstract) Naming.lookup("//" + ipHorosc + ":" + portHorosc + "/ServicioHoroscopo");
+                    srv = (ServiciosHoroscopoAbstract) Naming.lookup("//" + ipHorosc + ":" + portHorosc + "/ServiciosHoroscopo");
                     answerH = srv.consultarHoroscopo(sign);
                     if (answerH == null) {
                         answerH = "El servidor de horoscopo no esta disponible, consulte mas tarde.";
@@ -107,7 +107,7 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
                 System.out.println("Servidor> Consultando a servidor de clima...");
                 ServiciosClimaAbstract srv;
                 try {
-                    srv = (ServiciosClimaAbstract) Naming.lookup("//" + ipClima + ":" + portClima + "/ServicioClima");
+                    srv = (ServiciosClimaAbstract) Naming.lookup("//" + ipClima + ":" + portClima + "/ServiciosClima");
                     answerW = srv.consultarClima(date);
                     if (answerW == null) {
                         answerW = "El servidor de clima no esta disponible, consulte mas tarde.";

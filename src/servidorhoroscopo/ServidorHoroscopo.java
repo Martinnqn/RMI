@@ -22,7 +22,7 @@ public class ServidorHoroscopo {
         }
         try {
             ServiciosHoroscopoAbstract srvHorosc = new ServiciosHoroscopo();
-            Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServicioHoroscopo", srvHorosc);
+            Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServiciosHoroscopo", srvHorosc);
         } catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
             System.exit(1);

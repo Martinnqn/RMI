@@ -22,7 +22,7 @@ public class ServidorClima {
         }
         try {
             ServiciosClimaAbstract srvClima = new ServiciosClima();
-            Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServicioClima", srvClima);
+            Naming.rebind("rmi://" + args[0] + ":" + args[1] + "/ServiciosClima", srvClima);
         } catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
             System.exit(1);

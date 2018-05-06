@@ -10,7 +10,7 @@ public class ServiciosHoroscopo extends UnicastRemoteObject implements Servicios
     }
 
     @Override
-    public String consultarHoroscopo(String sign) throws RemoteException {
+    public String askHoroscopo(String sign) throws RemoteException {
         System.out.println("Cliente> Consulta: " + sign);
 
         String[] horoscopes = {

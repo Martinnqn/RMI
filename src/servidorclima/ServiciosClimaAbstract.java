@@ -5,6 +5,6 @@ import java.rmi.RemoteException;
 
 public interface ServiciosClimaAbstract extends Remote {
 
-    public String consultarClima(String date) throws RemoteException;
+    public String askClima(String date) throws RemoteException;
 
 }

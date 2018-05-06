@@ -35,7 +35,7 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
     }
 
     @Override
-    public String consultarClimayHorosc(String query) throws RemoteException {
+    public String askClimaHoroscopo(String query) throws RemoteException {
         String answer;
 
         System.out.println("Cliente> Consulta: " + query);
@@ -45,8 +45,8 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
             String date = query.split(",")[0].substring(1);
             String hAux = query.split(",")[1];
             String sign = hAux.substring(0, hAux.length() - 1);
-            String answerW = consultarClima(date);
-            String answerH = consultarHoroscopo(sign);
+            String answerW = askClima(date);
+            String answerH = askHoroscopo(sign);
             answer = "Horóscopo: " + answerH + "\nClima: " + answerW;
         } catch (Exception e) {
             answer = "Formato de consulta invalido, pruebe: (fecha,signo).";
@@ -55,7 +55,7 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
         return answer;
     }
 
-    private String consultarHoroscopo(String sign) throws RemoteException {
+    private String askHoroscopo(String sign) throws RemoteException {
         String answerH;
         boolean isValidSign = isValidSign(sign);
 
@@ -69,7 +69,7 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
                 ServiciosHoroscopoAbstract srv;
                 try {
                     srv = (ServiciosHoroscopoAbstract) Naming.lookup("//" + ipHorosc + ":" + portHorosc + "/ServiciosHoroscopo");
-                    answerH = srv.consultarHoroscopo(sign);
+                    answerH = srv.askHoroscopo(sign);
                     cacheHoroscope.put(sign, answerH);
                 } catch (Exception ex) {
                     answerH = "El servidor de horoscopo no esta disponible, consulte mas tarde.";
@@ -85,7 +85,7 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
         return answerH;
     }
 
-    private String consultarClima(String date) throws RemoteException {
+    private String askClima(String date) throws RemoteException {
         String answerW;
         boolean isValidDate = isValidDate(date);
 
@@ -100,7 +100,7 @@ public class ServiciosCentral extends UnicastRemoteObject implements ServiciosCe
                 ServiciosClimaAbstract srv;
                 try {
                     srv = (ServiciosClimaAbstract) Naming.lookup("//" + ipClima + ":" + portClima + "/ServiciosClima");
-                    answerW = srv.consultarClima(date);
+                    answerW = srv.askClima(date);
                     cacheWeather.put(date, answerW);
                 } catch (Exception ex) {
                     answerW = "El servidor de clima no esta disponible, consulte mas tarde.";

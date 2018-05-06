@@ -10,7 +10,7 @@ public class ServiciosClima extends UnicastRemoteObject implements ServiciosClim
     }
 
     @Override
-    public String consultarClima(String date) throws RemoteException {
+    public String askClima(String date) throws RemoteException {
         System.out.println("Cliente> Consulta: " + date);
         
         String[] weathers = {"Soleado", "Lluvioso", "Ventoso", "Nublado"};

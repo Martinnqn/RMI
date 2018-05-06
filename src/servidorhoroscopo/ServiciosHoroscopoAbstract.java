@@ -5,6 +5,6 @@ import java.rmi.RemoteException;
 
 public interface ServiciosHoroscopoAbstract extends Remote {
 
-    public String consultarHoroscopo(String sign) throws RemoteException;
+    public String askHoroscopo(String sign) throws RemoteException;
 
 }
